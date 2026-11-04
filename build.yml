@@ -1,0 +1,47 @@
+name: Build TOPVOX AI Setup
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurer
+        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+
+      - name: Compiler le plugin VST3 et l'application
+        run: cmake --build build --config Release --target TOPVOX_AI_VST3 TOPVOX_AI_Standalone --parallel
+
+      - name: Rassembler et verifier les fichiers
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path artifacts | Out-Null
+          Copy-Item -Recurse -Force build/TOPVOX_AI_artefacts/Release/VST3/TOPVOX_AI.vst3 artifacts/TOPVOX_AI.vst3
+          Copy-Item -Force build/TOPVOX_AI_artefacts/Release/Standalone/TOPVOX_AI.exe artifacts/TOPVOX_AI.exe
+          if (!(Test-Path artifacts/TOPVOX_AI.vst3)) { throw "VST3 introuvable" }
+          if (!(Test-Path artifacts/TOPVOX_AI.exe)) { throw "Application introuvable" }
+          Get-ChildItem -Recurse artifacts | Select-Object FullName, Length | Format-Table -AutoSize
+
+      - name: Creer l'installateur
+        shell: pwsh
+        run: |
+          $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+          if (!(Test-Path $iscc)) { choco install innosetup -y --no-progress }
+          & $iscc installer\topvox.iss
+          if (!(Test-Path dist/TOPVOX_AI_SETUP.exe)) { throw "Installateur non cree" }
+
+      - name: Telecharger l'installateur
+        uses: actions/upload-artifact@v4
+        with:
+          name: TOPVOX_AI_SETUP
+          path: dist/TOPVOX_AI_SETUP.exe
+
+      - name: Fichiers separes (VST3 + application)
+        uses: actions/upload-artifact@v4
+        with:
+          name: TOPVOX_AI_fichiers_separes
+          path: artifacts/

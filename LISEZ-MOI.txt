@@ -1,0 +1,54 @@
+TOPVOX AI STUDIO - COMMENT OBTENIR VOTRE FICHIER D'INSTALLATION
+================================================================
+
+Ce dossier contient tout le projet. GitHub (gratuit) va le compiler pour vous
+sur un vrai Windows. Vous ne tapez aucune commande.
+
+ETAPE 1 - Compte GitHub
+  - Allez sur https://github.com et creez un compte gratuit.
+
+ETAPE 2 - Creer un depot
+  - Cliquez sur le "+" en haut a droite > "New repository".
+  - Nom : topvox-ai-studio. Choisissez "Private". Cliquez "Create repository".
+
+ETAPE 3 - Envoyer le projet
+  - Decompressez le ZIP sur votre PC.
+  - Sur la page du depot, cliquez sur "uploading an existing file".
+  - Ouvrez le dossier decompresse, selectionnez TOUT son contenu
+    (y compris le dossier ".github") et glissez-le dans la page.
+  - Attendez la fin, puis cliquez "Commit changes".
+
+ETAPE 4 - Attendre la compilation (15 a 25 minutes)
+  - Cliquez sur l'onglet "Actions".
+  - Si GitHub demande d'activer les workflows, acceptez.
+  - La compilation demarre toute seule. Si elle ne demarre pas :
+    cliquez "Build TOPVOX AI Setup" puis "Run workflow".
+  - Une coche verte = termine.
+
+ETAPE 5 - Telecharger
+  - Cliquez sur l'execution terminee, descendez jusqu'a "Artifacts".
+  - Telechargez "TOPVOX_AI_SETUP" (ZIP contenant TOPVOX_AI_SETUP.exe).
+  - "TOPVOX_AI_fichiers_separes" contient TOPVOX_AI.vst3 et TOPVOX_AI.exe.
+
+ETAPE 6 - Installer
+  - Decompressez, double-cliquez sur TOPVOX_AI_SETUP.exe.
+  - Si Windows affiche "Windows a protege votre ordinateur" :
+    "Informations complementaires" > "Executer quand meme"
+    (l'installateur n'est pas signe numeriquement).
+  - Raccourcis crees : Bureau et menu Demarrer.
+  - Le plugin est installe dans C:\Program Files\Common Files\VST3.
+
+SI LA COMPILATION ECHOUE (croix rouge)
+  - Ouvrez l'etape en erreur, copiez le message rouge (ou faites une capture)
+  - et envoyez-le moi : je corrige et vous renvoie un nouveau ZIP.
+
+DANS VOTRE LOGICIEL AUDIO
+  - Cubase / FL Studio / Ableton : relancez le scan des plugins VST3.
+  - Cherchez "TOPVOX AI" dans les effets. Mettez-le sur une piste voix.
+  - Cliquez AUTO MIX, choisissez un preset, ajustez au gout.
+  - Application autonome : utilisez un casque (sinon larsen) et
+    verifiez que l'entree micro n'est pas coupee dans Options.
+
+NOTE LICENCE
+  - Le logiciel utilise le framework JUCE. Pour une vente commerciale,
+    verifiez les conditions de licence JUCE sur juce.com.
